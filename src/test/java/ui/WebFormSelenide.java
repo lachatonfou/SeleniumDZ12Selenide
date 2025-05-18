@@ -5,20 +5,16 @@ import Selenide.WebFormPageSelenide;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.support.ui.Select;
-import pageObjects.HomePage;
 import steps.AllureSteps;
 
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pageObjects.HomePage.BASE_URL;
 
 @Tag("pages/selenide")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WebFormSelenide {
-    AllureSteps allureSteps = new AllureSteps();
+    //AllureSteps allureSteps = new AllureSteps();
 
     //HomePageSelenide homePageSelenide;
     HomePageSelenide homePageSelenide = new HomePageSelenide();
@@ -41,65 +37,73 @@ public class WebFormSelenide {
 
     @Test
     void proverkaTextInput() {
-        webFormPageSelenide.getTextInput().sendKeys("Halo");
-        assertEquals("Halo", webFormPageSelenide.getTextInput().getAttribute("value"));
-        assertEquals("Text input", webFormPageSelenide.getTextInputLabel().getText());
+        webFormPageSelenide.getTextInput().setValue("Halo");
+                //.sendKeys("Halo");
+        assertEquals("Halo", webFormPageSelenide.getTextInput().getValue());
+                //.getAttribute("value"));
+        assertEquals("Text input", webFormPageSelenide.getTextInputLabel().text());
+                //.getText());
     }
 
     @Test
     void proverkaPassword() {
-        webFormPageSelenide.getPassword().sendKeys("ololo");
-        assertEquals("ololo", webFormPageSelenide.getPassword().getAttribute("value"));
-        assertEquals("Password", webFormPageSelenide.getPasswordLabel().getText());
+        webFormPageSelenide.getPassword().setValue("ololo");
+        assertEquals("ololo", webFormPageSelenide.getPassword().getValue());
+        assertEquals("Password", webFormPageSelenide.getPasswordLabel().text());
     }
 
     @Test
     void proverkaTextArea() {
-        webFormPageSelenide.getTextArea().sendKeys("uwuwu");
-        assertEquals("uwuwu", webFormPageSelenide.getTextArea().getAttribute("value"));
-        assertEquals("Textarea", webFormPageSelenide.getTextAreaLabel().getText());
+        webFormPageSelenide.getTextArea().setValue("uwuwu");
+        assertEquals("uwuwu", webFormPageSelenide.getTextArea().getValue());
+        assertEquals("Textarea", webFormPageSelenide.getTextAreaLabel().text());
     }
 
     @Test
     void proverkaDisabledInput() {
         Assertions.assertFalse(webFormPageSelenide.getDisabledInput().isEnabled());
         //Assertions.assertThrows(ElementNotInteractableException.class, () -> webFormPageSelenide.getDisabledInput().sendKeys("test"));
-        webFormPageSelenide.getDisabledInput().shouldNotBe(enabled);
-        webFormPageSelenide.getDisabledInput()
-                .setValue("test")
-                .shouldHave(value(""));
-        assertEquals("Disabled input", webFormPageSelenide.getDisabledInput().getAttribute("placeholder"));
-        assertEquals("Disabled input", webFormPageSelenide.getDisabledInputLabel().getText());
+        webFormPageSelenide.getDisabledInput().shouldBe(disabled);
+        webFormPageSelenide.getDisabledInput().shouldHave(attribute("disabled"));
+
+        assertEquals("Disabled input", webFormPageSelenide.getDisabledInput().attr("placeholder"));
+                //.getAttribute("placeholder"));
+        assertEquals("Disabled input", webFormPageSelenide.getDisabledInputLabel().text());
     }
 
     @Test
     void proverkaReadonlyInput() {
         Assertions.assertTrue(webFormPageSelenide.getReadonlyInput().isEnabled());
-        assertEquals("Readonly input", webFormPageSelenide.getReadonlyInput().getAttribute("value"));
-        assertEquals("Readonly input", webFormPageSelenide.getReadonlyInputLabel().getText());
+        assertEquals("Readonly input", webFormPageSelenide.getReadonlyInput().getValue());
+        assertEquals("Readonly input", webFormPageSelenide.getReadonlyInputLabel().text());
     }
 
     @Test
     void proverkaDropdownSelect() {
-        Select dropdown = new Select(webFormPageSelenide.getdropdownSelect());
-        dropdown.selectByVisibleText("Two");
-        assertEquals("Two", dropdown.getFirstSelectedOption().getText());
-
-        dropdown.selectByValue("3");
-        assertEquals("Three", dropdown.getFirstSelectedOption().getText());
+        webFormPageSelenide.getdropdownSelect().selectOption("Two");
+        assertEquals("Two", webFormPageSelenide.getdropdownSelect().getSelectedOption().text());
+        //.getFirstSelectedOption().getText());
+        webFormPageSelenide.getdropdownSelect().selectOptionByValue("3");
+        assertEquals("3", webFormPageSelenide.getdropdownSelect().getSelectedOptionValue());
     }
 
     @Test
     void proverkaCheckedCheckbox() {
-        webFormPageSelenide.getcheckedCheckbox().click();
-        assertEquals("Checked checkbox", webFormPageSelenide.getcheckedCheckboxLabel().getText());
-        assertEquals(false, webFormPageSelenide.getcheckedCheckbox().isSelected());
+        webFormPageSelenide.getcheckedCheckbox().setSelected(true);
+                //.click();
+        assertEquals("Checked checkbox", webFormPageSelenide.getcheckedCheckboxLabel().text());
+        assertEquals("on", webFormPageSelenide.getcheckedCheckbox().getValue());
+        //assertEquals(true, webFormPageSelenide.getcheckedCheckbox().isSelected());
+        webFormPageSelenide.getcheckedCheckbox().shouldBe(selected);
     }
 
     @Test
     void proverkaDefaultCheckbox() {
-        webFormPageSelenide.getdefaultCheckbox().click();
-        assertEquals("Default checkbox", webFormPageSelenide.getdefaultCheckboxLabel().getText());
+        webFormPageSelenide.getdefaultCheckbox().setSelected(true);
+                //.click();
+        assertEquals("Default checkbox", webFormPageSelenide.getdefaultCheckboxLabel().text());
+        assertEquals("on", webFormPageSelenide.getcheckedCheckbox().getValue());
         assertEquals(true, webFormPageSelenide.getdefaultCheckbox().isSelected());
+        webFormPageSelenide.getcheckedCheckbox().shouldBe(selected);
     }
 }

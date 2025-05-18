@@ -4,11 +4,6 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import pageObjects.DialogBoxesPage;
-import pageObjects.DropDownMenuPage;
-import pageObjects.NavigationPage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -42,12 +37,12 @@ public class HomePageSelenide {
 //        return new NavigationPage();
 //    }
 
-//    @Step("Open DropDown menu page")
-//    public DropDownMenuPage openDropDownMenuPage() {
-//        WebElement dropdownMenuButton = $(By.xpath("//a[@href = 'dropdown-menu.html']"));
-//        dropdownMenuButton.click();
-//        return new DropDownMenuPage();
-//    }
+    @Step("Open DropDown menu page")
+    public DropDownMenuPageSelenide openDropDownMenu() {
+        SelenideElement dropdownMenuButton = $(By.xpath("//a[@href = 'dropdown-menu.html']"));
+        dropdownMenuButton.click();
+        return new DropDownMenuPageSelenide();
+    }
 
 //    @Step("Open DialogBoxes page")
 //    public DialogBoxesPage openDialogBoxesPage() {
