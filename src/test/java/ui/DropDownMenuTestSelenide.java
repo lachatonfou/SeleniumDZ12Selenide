@@ -2,23 +2,16 @@ package ui;
 
 import Selenide.DropDownMenuPageSelenide;
 import Selenide.HomePageSelenide;
-import Selenide.WebFormPageSelenide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import pageObjects.DropDownMenuPage;
-import pageObjects.HomePage;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DropDownMenuSelenide {
+public class DropDownMenuTestSelenide {
     HomePageSelenide homePageSelenide = new HomePageSelenide();
     DropDownMenuPageSelenide dropDownMenuPageSelenide = new DropDownMenuPageSelenide();
 

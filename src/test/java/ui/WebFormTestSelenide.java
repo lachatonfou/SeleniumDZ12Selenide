@@ -2,10 +2,8 @@ package ui;
 
 import Selenide.HomePageSelenide;
 import Selenide.WebFormPageSelenide;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
-import steps.AllureSteps;
 
 import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +11,7 @@ import static pageObjects.HomePage.BASE_URL;
 
 @Tag("pages/selenide")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class WebFormSelenide {
+public class WebFormTestSelenide {
     //AllureSteps allureSteps = new AllureSteps();
 
     //HomePageSelenide homePageSelenide;
