@@ -57,31 +57,41 @@ public class DropDownMenuTestPlaywright {
     }
     @Test
     void proverkaDropdownMenu(){
-        Actions actions = new Actions(driver);
-        actions.click(dropDownMenuPage.getLeftClickMenu()).perform();
-        List<WebElement> menuItems1 = driver.findElements(By.xpath("//ul[@class='dropdown-menu show']"));
-        WebElement firstItem1 = menuItems1.get(0);
-        String[] firstItemText1 = firstItem1.getText().split("\n");
-        assertEquals("Action", firstItemText1[0]);
+//        Actions actions = new Actions(driver);
+//        actions.click(DropDownMenuPagePlaywright.getLeftClickMenu()).perform();
+//        List<WebElement> menuItems1 = driver.findElements(By.xpath("//ul[@class='dropdown-menu show']"));
+//        WebElement firstItem1 = menuItems1.get(0);
+//        String[] firstItemText1 = firstItem1.getText().split("\n");
+
+        DropDownMenuPagePlaywright.getLeftClickMenuButton().click();
+        assertEquals("Action", DropDownMenuPagePlaywright.getLeftClickMenu().innerText());
+        //assertEquals("Action", firstItemText1[0]);
     }
 
     @Test
     void rightClick() {
-        Actions actions = new Actions(driver);
-        actions.contextClick(dropDownMenuPage.getRightClickMenu()).perform();
-        List<WebElement> menuItems2 = driver.findElements(By.id("context-menu-2"));
-        WebElement firstItem2 = menuItems2.get(0);
-        String[] firstItemText2 = firstItem2.getText().split("\n");
-        assertEquals("Action", firstItemText2[0]);
+//        Actions actions = new Actions(driver);
+//        actions.contextClick(DropDownMenuPagePlaywright.getRightClickMenu()).perform();
+//        List<WebElement> menuItems2 = driver.findElements(By.id("context-menu-2"));
+//        WebElement firstItem2 = menuItems2.get(0);
+//        String[] firstItemText2 = firstItem2.getText().split("\n");
+
+        //DropDownMenuPagePlaywright.getRightClickMenu().click({ button: 'right' });
+        DropDownMenuPagePlaywright.getRightClickMenuButton().dispatchEvent("contextmenu");
+        assertEquals("Action", DropDownMenuPagePlaywright.getRightClickMenu().innerText());
+        //assertEquals("Action", firstItemText2[0]);
     }
 
     @Test
     void doubleClick() {
-        Actions actions = new Actions(driver);
-        actions.doubleClick(dropDownMenuPage.getDoubleClickMenu()).perform();
-        List<WebElement> menuItems3 = driver.findElements(By.id("context-menu-3"));
-        WebElement firstItem3 = menuItems3.get(0);
-        String[] firstItemText3 = firstItem3.getText().split("\n");
-        assertEquals("Action", firstItemText3[0]);
+//        Actions actions = new Actions(driver);
+//        actions.doubleClick(DropDownMenuPagePlaywright.getDoubleClickMenu()).perform();
+//        List<WebElement> menuItems3 = driver.findElements(By.id("context-menu-3"));
+//        WebElement firstItem3 = menuItems3.get(0);
+//        String[] firstItemText3 = firstItem3.getText().split("\n");
+
+        DropDownMenuPagePlaywright.getDoubleClickMenuButton().dblclick();
+        assertEquals("Action", DropDownMenuPagePlaywright.getDoubleClickMenu().innerText());
+        //assertEquals("Action", firstItemText3[0]);
     }
 }

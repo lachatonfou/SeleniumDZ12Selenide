@@ -26,15 +26,14 @@ public class DropDownMenuTestSelenide {
 //        Actions actions = new Actions(driver);
 //        actions.click(dropDownMenuPageSelenide.getLeftClickMenu()).perform();
 
-        dropDownMenuPageSelenide.getLeftClickMenu().click();
-        String firstItemText1 = $$(By.xpath("//ul[@class='dropdown-menu show']/li")).first().text();
+        dropDownMenuPageSelenide.getLeftClickMenuButton().click();
 
 //        List<WebElement> menuItems1 = driver.findElements(By.xpath("//ul[@class='dropdown-menu show']"));
 //        WebElement firstItem1 = menuItems1.get(0);
 //        String[] firstItemText1 = firstItem1.getText().split("\n");
 
-        assertEquals("Action", firstItemText1);
-        assertThat(firstItemText1).isEqualTo("Action");
+        assertEquals("Action", dropDownMenuPageSelenide.getLeftClickMenu().text());
+        assertThat(dropDownMenuPageSelenide.getLeftClickMenu().text()).isEqualTo("Action");
     }
 
     @Test
@@ -42,14 +41,13 @@ public class DropDownMenuTestSelenide {
 //        Actions actions = new Actions(driver);
 //        actions.contextClick(dropDownMenuPageSelenide.getRightClickMenu()).perform();
 
-          dropDownMenuPageSelenide.getRightClickMenu().contextClick();
-          String firstItemText2 = $$(By.xpath("//ul[@id='context-menu-2']/li[1]")).first().text();
+          dropDownMenuPageSelenide.getRightClickMenuButton().contextClick();
 
 //        List<WebElement> menuItems2 = driver.findElements(By.id("context-menu-2"));
 //        WebElement firstItem2 = menuItems2.get(0);
 //        String[] firstItemText2 = firstItem2.getText().split("\n");
-          assertEquals("Action", firstItemText2);
-          assertThat(firstItemText2).isEqualTo("Action");
+          assertEquals("Action", dropDownMenuPageSelenide.getRightClickMenu().text());
+          assertThat(dropDownMenuPageSelenide.getRightClickMenu().text()).isEqualTo("Action");
     }
 
     @Test
@@ -58,14 +56,13 @@ public class DropDownMenuTestSelenide {
 //        actions.doubleClick(dropDownMenuPageSelenide.getDoubleClickMenu()).perform();
 //        List<WebElement> menuItems3 = driver.findElements(By.id("context-menu-3"));
 
-          dropDownMenuPageSelenide.getDoubleClickMenu().doubleClick();
-          String firstItemText3 = $$(By.xpath("//ul[@id='context-menu-3']/li[1]")).first().text();
+          dropDownMenuPageSelenide.getDoubleClickMenuButton().doubleClick();
 
 //        WebElement firstItem3 = menuItems3.get(0);
 //        String[] firstItemText3 = firstItem3.getText().split("\n");
 //        assertEquals("Action", firstItemText3[0]);
 
-          assertEquals("Action", firstItemText3);
-          assertThat(firstItemText3).isEqualTo("Action");
+          assertEquals("Action", dropDownMenuPageSelenide.getDoubleClickMenu().text());
+          assertThat(dropDownMenuPageSelenide.getDoubleClickMenu().text()).isEqualTo("Action");
     }
 }
